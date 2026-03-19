@@ -7,7 +7,7 @@ const projects = [
     description:
       "Java desktop application for tracking study sessions using a Pomodoro-based workflow, capturing structured data like timestamps, duration, subject, and productivity levels.",
     tags: ["JAVA", "SWING", "GSON", "JSON"],
-    link: "https://github.com/JemarcoBriz",
+    link: "https://github.com/Jmbriz123/Brainventory",
   },
 ];
 
@@ -55,13 +55,13 @@ const ProjectsSection = () => {
                   </div>
                   <div className="col-span-12 md:col-span-5">
                     <div className="overflow-hidden rounded-lg border border-border/80 bg-secondary/40 aspect-[16/10]">
-                      <motion.div
+                      <motion.img
+                        src="images/brainventoryss.png"
+                        alt="Screenshot of Brainventory project"
+                        className="h-full w-full object-cover"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
-                        className="w-full h-full flex items-center justify-center"
-                      >
-                        <span className="mono-label">ADD SCREENSHOT LATER</span>
-                      </motion.div>
+                      />
                     </div>
                   </div>
                 </div>
