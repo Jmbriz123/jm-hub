@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
-type NavItem = { id: string; label: string; href: string };
+type NavItem = { id: string; label: string };
 
 const navItems: NavItem[] = [
-  { id: "about", label: "ABOUT", href: "#about" },
-  { id: "experience", label: "EXPERIENCE", href: "#experience" },
-  { id: "projects", label: "PROJECTS", href: "#projects" },
-  { id: "contact", label: "CONTACT", href: "#contact" },
+  { id: "about", label: "ABOUT" },
+  { id: "experience", label: "EXPERIENCE" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "contact", label: "CONTACT" },
 ];
 
 function useActiveSection(sectionIds: string[]) {
@@ -44,6 +44,12 @@ const Navigation = () => {
   const active = useActiveSection(sectionIds);
   const [open, setOpen] = useState(false);
 
+  const scrollToId = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -64,20 +70,26 @@ const Navigation = () => {
       <div className="section-x">
         <div className="container-max">
           <div className="mt-4 flex items-center justify-between rounded-xl border border-border/80 bg-background/55 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/40">
-            <a href="#top" className="group flex flex-col gap-0.5">
+            <button
+              type="button"
+              onClick={() => scrollToId("top")}
+              className="group flex flex-col gap-0.5 text-left"
+              aria-label="Scroll to top"
+            >
               <span className="font-mono text-[11px] tracking-[0.18em] text-foreground/90 group-hover:text-foreground transition-colors">
                 JEMARCO BRIZ
               </span>
               <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground">
                 CS STUDENT
               </span>
-            </a>
+            </button>
 
             <div className="hidden items-center gap-1 md:flex">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.id}
-                  href={item.href}
+                  type="button"
+                  onClick={() => scrollToId(item.id)}
                   className={cn(
                     "rounded-lg px-3 py-2 font-mono text-[11px] tracking-[0.18em] transition-colors",
                     active === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground",
@@ -85,7 +97,7 @@ const Navigation = () => {
                   aria-current={active === item.id ? "page" : undefined}
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <a
                 href="mailto:jemarcobriz123@gmail.com"
@@ -115,17 +127,20 @@ const Navigation = () => {
           >
             <div className="flex flex-col p-2">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.id}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    scrollToId(item.id);
+                  }}
                   className={cn(
                     "rounded-lg px-3 py-3 font-mono text-[11px] tracking-[0.18em] transition-colors",
                     active === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <a
                 href="mailto:jemarcobriz123@gmail.com"

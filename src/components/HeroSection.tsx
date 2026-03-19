@@ -49,7 +49,7 @@ const HeroSection = () => {
               transition={{ delay: 1.05, duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
               className="mt-7 max-w-[62ch] text-muted-foreground text-base md:text-lg leading-relaxed"
             >
-              Computer Science student focused on building practical software and growing into data engineering—shipping clean, reliable work with modern web tooling.
+              Computer Science student focused learning programming, software engineering, and data engineering fundamentals
             </motion.p>
 
             <motion.div
@@ -58,12 +58,13 @@ const HeroSection = () => {
               transition={{ delay: 1.2, duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
               className="mt-10 flex flex-wrap gap-3"
             >
-              <a
-                href="#projects"
+              <button
+                type="button"
+                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth", block: "start" })}
                 className="rounded-lg bg-primary px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-primary-foreground hover:opacity-90 transition-opacity"
               >
                 VIEW PROJECTS →
-              </a>
+              </button>
               <a
                 href="mailto:jemarcobriz123@gmail.com"
                 className="rounded-lg border border-border/80 bg-secondary/60 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-foreground hover:border-foreground/30 hover:bg-secondary transition-colors"
@@ -71,7 +72,7 @@ const HeroSection = () => {
                 EMAIL →
               </a>
               <a
-                href="https://github.com/JemarcoBriz"
+                href="https://github.com/Jmbriz123"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg border border-border/80 bg-secondary/40 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary/60 transition-colors"
@@ -79,7 +80,7 @@ const HeroSection = () => {
                 GITHUB →
               </a>
               <a
-                href="https://linkedin.com/in/jemarcobriz"
+                href="https://www.linkedin.com/in/jemarco-briz-52419a327/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg border border-border/80 bg-secondary/40 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary/60 transition-colors"
@@ -95,7 +96,17 @@ const HeroSection = () => {
             transition={{ delay: 1.35, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
             className="col-span-12 md:col-span-4 md:justify-self-end mt-10 md:mt-0"
           >
-            <div className="rounded-xl border border-border/80 bg-background/35 p-5 backdrop-blur supports-[backdrop-filter]:bg-background/25">
+            <div className="rounded-xl border border-border/80 bg-background/35 p-5 backdrop-blur supports-[backdrop-filter]:bg-background/25 flex flex-col gap-5">
+              <div className="flex justify-center md:justify-end">
+                <div className="relative h-40 w-40 md:h-56 md:w-56 overflow-hidden rounded-3xl border border-border/80 bg-secondary/50">
+                  <img
+                    src="images/pfp.jpg"
+                    alt="Portrait of Jemarco Briz"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+
               <p className="mono-label">CURRENT</p>
               <p className="mt-2 text-foreground font-semibold leading-snug">
                 University of the Philippines
@@ -104,7 +115,7 @@ const HeroSection = () => {
                 DataCamp Scholar (Data Engineering Pilipinas) · Web Dev @ UPV Komsai.Org
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                {["Python", "SQL", "React", "TypeScript"].map((t) => (
+                {["Python", "SQL", "Java", "C"].map((t) => (
                   <span key={t} className="tech-tag">{t}</span>
                 ))}
               </div>
@@ -119,9 +130,13 @@ const HeroSection = () => {
           className="mt-16 flex items-center justify-between"
         >
           <span className="mono-label">SCROLL</span>
-          <a href="#about" className="mono-label link-underline text-foreground">
+          <button
+            type="button"
+            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            className="mono-label link-underline text-foreground"
+          >
             ABOUT ↓
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

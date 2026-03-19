@@ -21,7 +21,7 @@ const FooterSection = () => {
                   EMAIL ME →
                 </a>
                 <a
-                  href="https://linkedin.com/in/jemarcobriz"
+                  href="https://www.linkedin.com/in/jemarco-briz-52419a327/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-lg border border-border/80 bg-secondary/60 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-foreground hover:border-foreground/30 hover:bg-secondary transition-colors"
@@ -29,7 +29,7 @@ const FooterSection = () => {
                   LINKEDIN →
                 </a>
                 <a
-                  href="https://github.com/JemarcoBriz"
+                  href="https://github.com/Jmbriz123"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-lg border border-border/80 bg-secondary/40 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary/60 transition-colors"
@@ -53,9 +53,13 @@ const FooterSection = () => {
 
           <div className="mt-10 border-t border-border/70 pt-5 flex justify-between items-center">
             <span className="font-mono text-[10px] text-muted-foreground tracking-widest">© 2026 JEMARCO BRIZ</span>
-            <a href="#top" className="font-mono text-[10px] text-muted-foreground tracking-widest hover:text-foreground transition-colors">
+            <button
+              type="button"
+              onClick={() => document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+              className="font-mono text-[10px] text-muted-foreground tracking-widest hover:text-foreground transition-colors"
+            >
               BACK TO TOP ↑
-            </a>
+            </button>
           </div>
         </div>
       </div>
