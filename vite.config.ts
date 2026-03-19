@@ -12,7 +12,7 @@ export default defineConfig(async ({ mode }) => {
   }
 
   return {
-    base: "/jm-hub/",
+    base: "/",
     server: {
       host: "::",
       port: 8080,
@@ -28,3 +28,6 @@ export default defineConfig(async ({ mode }) => {
     },
   };
 });
+```
+
+
