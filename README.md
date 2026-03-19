@@ -2,7 +2,7 @@
 
 Personal portfolio website for Jemarco N. Briz, a Computer Science student at the University of the Philippines Visayas and aspiring Data Engineer.
 
-🔗 **Live site:** 
+🔗 **Live site: https://jm-hub.vercel.app/** 
 
 ## Tech Stack
 
