@@ -32,60 +32,98 @@ const AnimatedText = ({ text }: { text: string }) => (
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-end px-6 md:px-10 pb-[10vh]">
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-12">
-          <h1 className="font-display font-900 text-foreground text-[clamp(2.5rem,10vw,8rem)] leading-[0.95] tracking-[-0.04em]">
-            <AnimatedText text="JEMARCO" />
-            <br />
-            <AnimatedText text="BRIZ." />
-          </h1>
+    <section className="min-h-screen section-x pt-28 md:pt-32 pb-[10vh] flex items-end">
+      <div className="container-max w-full">
+        <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
+          <div className="col-span-12 md:col-span-8">
+            <p className="mono-label mb-4">HI, I'M</p>
+            <h1 className="text-foreground text-[clamp(2.75rem,9vw,7.25rem)] leading-[0.92] tracking-[-0.05em] font-extrabold">
+              <AnimatedText text="JEMARCO" />
+              <br />
+              <AnimatedText text="BRIZ." />
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.05, duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
+              className="mt-7 max-w-[62ch] text-muted-foreground text-base md:text-lg leading-relaxed"
+            >
+              Computer Science student focused on building practical software and growing into data engineering—shipping clean, reliable work with modern web tooling.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
+              className="mt-10 flex flex-wrap gap-3"
+            >
+              <a
+                href="#projects"
+                className="rounded-lg bg-primary px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-primary-foreground hover:opacity-90 transition-opacity"
+              >
+                VIEW PROJECTS →
+              </a>
+              <a
+                href="mailto:jemarcobriz123@gmail.com"
+                className="rounded-lg border border-border/80 bg-secondary/60 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-foreground hover:border-foreground/30 hover:bg-secondary transition-colors"
+              >
+                EMAIL →
+              </a>
+              <a
+                href="https://github.com/JemarcoBriz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-border/80 bg-secondary/40 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary/60 transition-colors"
+              >
+                GITHUB →
+              </a>
+              <a
+                href="https://linkedin.com/in/jemarcobriz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-border/80 bg-secondary/40 px-4 py-3 font-mono text-[11px] tracking-[0.18em] text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-secondary/60 transition-colors"
+              >
+                LINKEDIN →
+              </a>
+            </motion.div>
+          </div>
+
+          <motion.aside
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.35, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            className="col-span-12 md:col-span-4 md:justify-self-end mt-10 md:mt-0"
+          >
+            <div className="rounded-xl border border-border/80 bg-background/35 p-5 backdrop-blur supports-[backdrop-filter]:bg-background/25">
+              <p className="mono-label">CURRENT</p>
+              <p className="mt-2 text-foreground font-semibold leading-snug">
+                University of the Philippines
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                DataCamp Scholar (Data Engineering Pilipinas) · Web Dev @ UPV Komsai.Org
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["Python", "SQL", "React", "TypeScript"].map((t) => (
+                  <span key={t} className="tech-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </motion.aside>
         </div>
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          className="col-span-12 md:col-span-5 md:col-start-8 mt-8 md:mt-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.65, duration: 0.8 }}
+          className="mt-16 flex items-center justify-between"
         >
-          <p className="mono-label mb-3">ROLE</p>
-          <p className="font-display text-lg md:text-xl text-foreground leading-tight">
-            Computer Science Student at University of the Philippines
-          </p>
-          <p className="text-muted-foreground text-sm mt-4 leading-relaxed max-w-[40ch]">
-            Aspiring data engineer & web developer. Building things with Python, Java, SQL, and modern web technologies.
-          </p>
+          <span className="mono-label">SCROLL</span>
+          <a href="#about" className="mono-label link-underline text-foreground">
+            ABOUT ↓
+          </a>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.8 }}
-        className="mt-16 flex gap-6 items-center"
-      >
-        <a
-          href="mailto:jemarcobriz123@gmail.com"
-          className="tech-tag hover:border-primary hover:text-primary"
-        >
-          SEND EMAIL →
-        </a>
-        <a
-          href="https://github.com/JemarcoBriz"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="tech-tag hover:border-primary hover:text-primary"
-        >
-          GITHUB →
-        </a>
-        <a
-          href="https://linkedin.com/in/jemarcobriz"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="tech-tag hover:border-primary hover:text-primary"
-        >
-          LINKEDIN →
-        </a>
-      </motion.div>
     </section>
   );
 };

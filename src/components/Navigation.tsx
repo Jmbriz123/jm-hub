@@ -1,22 +1,142 @@
 import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
+
+type NavItem = { id: string; label: string; href: string };
+
+const navItems: NavItem[] = [
+  { id: "about", label: "ABOUT", href: "#about" },
+  { id: "experience", label: "EXPERIENCE", href: "#experience" },
+  { id: "projects", label: "PROJECTS", href: "#projects" },
+  { id: "contact", label: "CONTACT", href: "#contact" },
+];
+
+function useActiveSection(sectionIds: string[]) {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+
+        if (visible?.target?.id) setActive(visible.target.id);
+      },
+      { rootMargin: "-25% 0px -65% 0px", threshold: [0.05, 0.1, 0.2] },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [sectionIds]);
+
+  return active;
+}
 
 const Navigation = () => {
+  const sectionIds = useMemo(() => navItems.map((i) => i.id), []);
+  const active = useActiveSection(sectionIds);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
     <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      className="fixed top-0 w-full z-50 mix-blend-difference px-6 md:px-10 py-6 md:py-8 flex justify-between items-start font-mono text-xs"
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="fixed top-0 z-50 w-full"
+      aria-label="Primary"
     >
-      <div className="flex flex-col gap-0.5">
-        <span className="text-foreground font-medium tracking-widest">JEMARCO BRIZ</span>
-        <span className="text-muted-foreground tracking-widest">CS STUDENT</span>
-      </div>
-      <div className="flex flex-col items-end gap-2">
-        <a href="#about" className="text-foreground hover:text-primary transition-colors duration-200 tracking-widest">ABOUT</a>
-        <a href="#experience" className="text-foreground hover:text-primary transition-colors duration-200 tracking-widest">EXPERIENCE</a>
-        <a href="#projects" className="text-foreground hover:text-primary transition-colors duration-200 tracking-widest">PROJECTS</a>
-        <a href="#contact" className="text-foreground hover:text-primary transition-colors duration-200 tracking-widest">CONTACT</a>
+      <div className="section-x">
+        <div className="container-max">
+          <div className="mt-4 flex items-center justify-between rounded-xl border border-border/80 bg-background/55 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/40">
+            <a href="#top" className="group flex flex-col gap-0.5">
+              <span className="font-mono text-[11px] tracking-[0.18em] text-foreground/90 group-hover:text-foreground transition-colors">
+                JEMARCO BRIZ
+              </span>
+              <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground">
+                CS STUDENT
+              </span>
+            </a>
+
+            <div className="hidden items-center gap-1 md:flex">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={cn(
+                    "rounded-lg px-3 py-2 font-mono text-[11px] tracking-[0.18em] transition-colors",
+                    active === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                  )}
+                  aria-current={active === item.id ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="mailto:jemarcobriz123@gmail.com"
+                className="ml-2 rounded-lg border border-border/80 bg-secondary/60 px-3 py-2 font-mono text-[11px] tracking-[0.18em] text-foreground hover:border-foreground/30 hover:bg-secondary transition-colors"
+              >
+                EMAIL →
+              </a>
+            </div>
+
+            <button
+              type="button"
+              className="md:hidden rounded-lg border border-border/80 bg-secondary/60 px-3 py-2 font-mono text-[11px] tracking-[0.18em] text-foreground hover:border-foreground/30 hover:bg-secondary transition-colors"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? "CLOSE" : "MENU"}
+            </button>
+          </div>
+
+          <div
+            id="mobile-nav"
+            className={cn(
+              "md:hidden mt-3 overflow-hidden rounded-xl border border-border/80 bg-background/75 backdrop-blur supports-[backdrop-filter]:bg-background/55",
+              open ? "max-h-96 opacity-100" : "max-h-0 opacity-0 border-transparent",
+            )}
+          >
+            <div className="flex flex-col p-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "rounded-lg px-3 py-3 font-mono text-[11px] tracking-[0.18em] transition-colors",
+                    active === item.id ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a
+                href="mailto:jemarcobriz123@gmail.com"
+                onClick={() => setOpen(false)}
+                className="mt-1 rounded-lg border border-border/80 bg-secondary/60 px-3 py-3 font-mono text-[11px] tracking-[0.18em] text-foreground hover:border-foreground/30 hover:bg-secondary transition-colors"
+              >
+                EMAIL →
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </motion.nav>
   );

@@ -13,57 +13,62 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="section-border section-padding px-6 md:px-10">
-      <div className="grid grid-cols-12 gap-4 md:gap-8 mb-12">
+    <section id="projects" className="section-border section-padding section-x">
+      <div className="container-max grid grid-cols-12 gap-4 md:gap-8">
         <div className="col-span-12 md:col-span-3">
           <p className="mono-label sticky top-24">PROJECTS</p>
         </div>
-      </div>
-
-      <div className="space-y-0">
-        {projects.map((project, i) => (
-          <motion.a
-            key={i}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-            whileTap={{ scale: 0.99 }}
-            className="group block section-border pt-8 pb-10 grid grid-cols-12 gap-4 cursor-pointer"
-          >
-            <div className="col-span-12 md:col-span-5">
-              <span className="mono-label">
-                {project.number} / {project.title}
-              </span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mt-2 group-hover:text-primary transition-colors duration-200">
-                {project.title}
-              </h3>
-              <p className="text-muted-foreground mt-4 text-sm leading-relaxed max-w-[35ch]">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mt-6">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="tech-tag">{tag}</span>
-                ))}
-              </div>
-              <span className="mono-label mt-6 inline-block group-hover:text-primary transition-colors duration-200">
-                VIEW ON GITHUB →
-              </span>
-            </div>
-            <div className="col-span-12 md:col-span-7 overflow-hidden bg-secondary aspect-[16/10]">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="w-full h-full bg-secondary flex items-center justify-center"
+        <div className="col-span-12 md:col-span-9">
+          <div className="grid gap-4 md:gap-6">
+            {projects.map((project, i) => (
+              <motion.a
+                key={i}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
+                whileTap={{ scale: 0.995 }}
+                className="group rounded-xl border border-border/80 bg-background/35 p-5 backdrop-blur supports-[backdrop-filter]:bg-background/25 hover:border-foreground/20 transition-colors"
               >
-                <span className="mono-label">PROJECT PREVIEW</span>
-              </motion.div>
-            </div>
-          </motion.a>
-        ))}
+                <div className="grid grid-cols-12 gap-4 items-start">
+                  <div className="col-span-12 md:col-span-7">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="mono-label">
+                        {project.number} / {project.title}
+                      </span>
+                      <span className="mono-label group-hover:text-foreground transition-colors">OPEN ↗</span>
+                    </div>
+                    <h3 className="mt-3 text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground mt-3 text-sm leading-relaxed max-w-[70ch]">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="tech-tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="col-span-12 md:col-span-5">
+                    <div className="overflow-hidden rounded-lg border border-border/80 bg-secondary/40 aspect-[16/10]">
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
+                        className="w-full h-full flex items-center justify-center"
+                      >
+                        <span className="mono-label">ADD SCREENSHOT LATER</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
