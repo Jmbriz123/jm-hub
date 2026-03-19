@@ -32,10 +32,10 @@ const AnimatedText = ({ text }: { text: string }) => (
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen section-x pt-28 md:pt-32 pb-[10vh] flex items-end">
+    <section className="min-h-screen section-x pt-28 md:pt-32 pb-[10vh] flex items-center">
       <div className="container-max w-full">
-        <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
-          <div className="col-span-12 md:col-span-8">
+        <div className="grid grid-cols-12 gap-8 items-center">
+          <div className="col-span-12 md:col-span-7">
             <p className="mono-label mb-4">HI, I'M</p>
             <h1 className="text-foreground text-[clamp(2.75rem,9vw,7.25rem)] leading-[0.92] tracking-[-0.05em] font-extrabold">
               <AnimatedText text="JEMARCO" />
@@ -93,31 +93,31 @@ const HeroSection = () => {
           <motion.aside
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.35, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-            className="col-span-12 md:col-span-4 md:justify-self-end mt-10 md:mt-0"
+            transition={{ delay: 1.2, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            className="col-span-12 md:col-span-5 flex justify-center md:justify-end mt-10 md:mt-0"
           >
-            <div className="rounded-xl border border-border/80 bg-background/35 p-5 backdrop-blur supports-[backdrop-filter]:bg-background/25 flex flex-col gap-5">
-              <div className="flex justify-center md:justify-end">
-                <div className="relative h-40 w-40 md:h-56 md:w-56 overflow-hidden rounded-3xl border border-border/80 bg-secondary/50">
-                  <img
-                    src="images/pfp.jpg"
-                    alt="Portrait of Jemarco Briz"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+            <div className="flex flex-col items-center md:items-end gap-5">
+              <div className="relative h-44 w-44 md:h-64 md:w-64 overflow-hidden rounded-full border border-border/80 bg-secondary/50 shadow-[0_18px_45px_rgba(0,0,0,0.7)]">
+                <img
+                  src="images/pfp.jpg"
+                  alt="Portrait of Jemarco Briz"
+                  className="h-full w-full object-cover"
+                />
               </div>
 
-              <p className="mono-label">CURRENT</p>
-              <p className="mt-2 text-foreground font-semibold leading-snug">
-                University of the Philippines
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                DataCamp Scholar (Data Engineering Pilipinas) · Web Dev @ UPV Komsai.Org
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {["Python", "SQL", "Java", "C"].map((t) => (
-                  <span key={t} className="tech-tag">{t}</span>
-                ))}
+              <div className="rounded-xl border border-border/80 bg-background/40 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/30 w-full max-w-xs">
+                <p className="mono-label">CURRENT</p>
+                <p className="mt-2 text-foreground font-semibold leading-snug">
+                  University of the Philippines
+                </p>
+                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                  DataCamp Scholar (Data Engineering Pilipinas) · Web Dev @ UPV Komsai.Org
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {["Python", "SQL", "Java", "C"].map((t) => (
+                    <span key={t} className="tech-tag">{t}</span>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.aside>
